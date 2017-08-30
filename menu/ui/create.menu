@@ -1,0 +1,738 @@
+#include "ui/menudef.h"
+{
+
+	menuDef {
+		name "create_menu"
+		visible 0
+		fullscreen 0
+		rect 20 77 620 312
+		focusColor 1 1 1 1
+		style 1
+		onOpen	{ uiScript loadArenas }
+		onEsc 	{ close extra_menu; close create_menu; open main}
+
+
+
+		//	MENU DECORATIVE	//
+
+		itemDef {
+			name subbuttonshadow
+			rect 480 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 481 308 118 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 599 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+
+
+		// TITLE //
+
+		itemDef {
+			name tab
+			group grpTabs
+			text "HOST"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 10 13 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+
+
+		// CATEGORIES //
+
+		itemDef {
+			name demoname
+			group grpTabs
+			text "HOST INFO"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 10 39 70 19
+			forecolor .07 .3 .7 .8
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group grpTabs
+			text "NET SETTINGS"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 10 100 70 19
+			forecolor .07 .3 .7 .8
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group grpTabs
+			text "PROTECTION SETTINGS"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 10 161 70 19
+			forecolor .07 .3 .7 .8
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group grpTabs
+			text "MAP"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 420 39 70 19
+			forecolor .07 .3 .7 .8
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group grpTabs
+			text "SERVER SETTINGS"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 220 39 70 19
+			forecolor .07 .3 .7 .8
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group grpTabs
+			text "GAME TYPE SETTINGS"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 220 139 70 19
+			forecolor .07 .3 .7 .8
+			visible 1 
+			decoration
+		}
+		
+		
+		// HOST INFO CONTENT //
+
+		itemDef {
+			name host
+			type ITEM_TYPE_EDITFIELD
+			text "SERVER NAME:"
+			cvar "sv_hostname"
+			rect 0 44 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 32
+			maxPaintChars 13
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name move
+			type ITEM_TYPE_EDITFIELD
+			text "MOTD:"
+			cvar "g_motd"
+			rect 0 57 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 40
+			maxPaintChars 13
+			textalignx 10
+			textaligny 10
+			textscale .2        
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name move
+			type ITEM_TYPE_EDITFIELD
+			text "JOIN MESSAGE:"
+			cvar "sv_joinmessage"
+			rect 0 70 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 40
+			maxPaintChars 13
+			textalignx 10
+			textaligny 10
+			textscale .2        
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		
+		
+		// NET SETTINGS CONTENT //
+
+		itemDef {
+			name host
+			type ITEM_TYPE_MULTI
+			text "NETWORK:"
+			cvar "ui_dedicated"
+			cvarFloatList { "None" 0 "LAN" 1 "Internet" 2 }
+			rect 0 105 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 32
+			maxPaintChars 13
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "ANTI-WARP:"
+			cvar "g_antiwarp"
+			rect 0 118 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 32
+			maxPaintChars 13
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			cvartest g_antiwarp
+			hidecvar { "0" }
+			name host
+			rect 0 131 200 13
+			type ITEM_TYPE_YESNO
+			type ITEM_TYPE_NUMERICFIELD
+			text "ANTI-WARP TOL.:"
+			cvar "g_antiwarptol"
+			maxChars 3
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			cvartest g_antiwarp
+			hidecvar { "1" }
+			name host
+			rect 0 131 200 13
+			type ITEM_TYPE_YESNO
+			type ITEM_TYPE_NUMERICFIELD
+			text "ANTI-WARP TOL.:"
+			cvar "g_antiwarptol"
+			maxChars 3
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .3
+			visible 1
+			decoration
+		}
+
+
+		// PROTECTION SETTINGS CONTENT //
+
+		itemDef {
+			name host
+			type ITEM_TYPE_EDITFIELD
+			text "PASSWORD:"
+			cvar "g_password"
+			rect 0 166 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 15
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "PURE SERVER:"
+			cvar "sv_pure"
+			rect 0 179 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "FRIENDLY FIRE:"
+			cvar "g_friendlyfire"
+			rect 0 192 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "FLOOD PROTECT:"
+			cvar "sv_floodprotect"
+			rect 0 205 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_MULTI
+			text "ALLOW VOTING:"
+			cvar "g_allowvote"
+			cvarFloatList { "No" 0 "Yes" 536871039 }
+			rect 0 218 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "ENEMY FOLLOW:"
+			cvar "g_followstrict"
+			rect 0 231 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+
+
+		// SERVER SETTINGS CONTENT //
+
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "MAX CLIENTS:"
+			cvar "sv_maxclients"
+			rect 210 44 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 32
+			maxPaintChars 13
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "MATCHMODE:"
+			cvar "g_matchmode"
+			rect 210 57 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_MULTI
+			text "ARMBANDS:"
+			cvar "g_armbands"
+			cvarFloatList { "Player" 0 "Team" 1 "Random" 2 }
+			rect 210 70 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "TIME LIMIT:"
+			cvar "timelimit"
+			rect 210 83 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "FRAG LIMIT:"
+			cvar "fraglimit"
+			rect 210 96 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			ownerdraw UI_NETGAMETYPE
+			text "GAME TYPE:"
+			rect 210 109 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+
+
+		//  MAP CONTENT  //	
+
+		itemDef {
+			name mappreview
+			style 0	
+			ownerdraw UI_MAPPREVIEW
+			rect 416 205 123 90
+			visible 1
+			decoration
+		}
+		itemDef {
+			name maplist
+		    rect 413 40 204 160
+			type ITEM_TYPE_LISTBOX
+			style WINDOW_STYLE_FILLED
+			elementwidth 120
+			elementheight 13.6
+			textscale .2
+			elementtype LISTBOX_TEXT
+			feeder FEEDER_ALLMAPS
+			forecolor 1 1 1 .65
+			outlinecolor 1 1 1 .1
+			visible 1
+			columns 1 2 190 25
+			action { play "sound/misc/kcaction.wav" }
+		}
+
+
+		//  GAME TYPE: FREE FOR ALL, TEAM DEATH MATCH, CAPTURE THE FLAG  //	
+
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "RESPAWN PROTECTION:"
+			cvar "g_respawnprotection"
+			cvartest "ui_netgametype"
+			showcvar { "0", "2", "6"}
+			rect 210 144 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "RESPAWN DELAY:"
+			cvar "g_respawndelay"
+			cvartest "ui_netgametype"
+			showcvar { "0", "2", "6"}
+			rect 210 157 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "FORCE RESPAWN DELAY:"
+			cvar "g_forcerespawn"
+			cvartest "ui_netgametype"
+			showcvar { "0", "2"}
+			rect 210 170 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+
+
+		//  GAME TYPE: LAST MAN STANDING, TEAM SURVIVOR, FOLLOW THE LEADER, BOMB MODE  //	
+
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "MAX ROUNDS:"
+			cvar "g_maxrounds"
+			cvartest "ui_netgametype"
+			showcvar { "1", "3", "4", "7"}
+			rect 210 144 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "ROUND TIME:"
+			cvar "g_roundtime"
+			cvartest "ui_netgametype"
+			showcvar { "1", "3", "4", "7"}
+			rect 210 157 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "DRAW POINT:"
+			cvar "g_survivorrule"
+			cvartest "ui_netgametype"
+			showcvar { "1", "3", "4", "7" }
+			rect 210 170 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "SUDDEN DEATH:"
+			cvar "g_suddendeath"
+			cvartest "ui_netgametype"
+			showcvar { "1", "3", "4", "7"}
+			rect 210 183 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+
+
+		//  GAME TYPE: CTF  //	
+
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "CAPTURE LIMIT:"
+			cvar "capturelimit"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 170 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_YESNO
+			text "WAVE RESPAWNS:"
+			cvar "g_waverespawns"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 183 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "BLUE WAVE:"
+			cvar "g_bluewave"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 196 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "RED WAVE:"
+			cvar "g_redwave"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 209 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "FLAG RETURN TIME:"
+			cvar "g_flagreturntime"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 222 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "HOT POTATO:"
+			cvar "g_hotpotato"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 235 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "UNSUB WAIT:"
+			cvar "g_ctfunsubwait"
+			cvartest "ui_netgametype"
+			showcvar { "6"}
+			rect 210 248 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		
+		
+		//  GAME TYPE: BOMB MODE  //	
+
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "BOMB PLANT TIME:"
+			cvar "g_bombplanttime"
+			cvartest "ui_netgametype"
+			showcvar { "7"}
+			rect 210 196 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "BOMB EXPLODE TIME:"
+			cvar "g_bombexplodetime"
+			cvartest "ui_netgametype"
+			showcvar { "7"}
+			rect 210 209 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name host
+			type ITEM_TYPE_NUMERICFIELD
+			text "BOMB DEFUSE TIME:"
+			cvar "g_bombdefusetime"
+			cvartest "ui_netgametype"
+			showcvar { "7"}
+			rect 210 222 200 13
+			textalign ITEM_ALIGN_LEFT
+			maxChars 20
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+		}
+
+
+	}
+}

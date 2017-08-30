@@ -1,0 +1,62 @@
+#include "ui/menudef.h"
+{
+
+	menuDef {
+		name "stats_menu"
+		visible 0
+		fullscreen 0
+		rect 20 77 600 312
+		focusColor 1 1 1 1
+		style 1
+		onClose { uiScript saveControls }
+		onOpen	{ setitemcolor fadebox backcolor 0 0 0 1; uiScript loadControls; show grpControls }
+		onEsc 	{ close control_menu; close setup_menu; open main}
+
+
+
+		//	MENU DECORATIVE	//
+
+		itemDef {
+			name subbuttonshadow
+			rect 0 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 1 308 118 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 119 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+
+
+		// TITLE //
+
+		itemDef {
+			name tab
+			group grpTabs
+			text "STATS"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 10 13 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+
+
+	}
+}
