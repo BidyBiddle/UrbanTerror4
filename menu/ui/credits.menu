@@ -1,0 +1,666 @@
+#include "ui/menudef.h"
+{
+
+	menuDef {
+		name "credits_menu"
+		visible 0
+		fullscreen 0
+		rect 20 77 600 312
+		focusColor 1 1 1 1
+		style 1
+		onClose { uiScript saveControls }
+		onOpen	{ setitemcolor fadebox backcolor 0 0 0 1; ; show page1; hide page2; show page1b; hide page2b }
+		onEsc 	{ close extra_menu; close credits_menu; open main}
+
+
+
+		//	MENU DECORATIVE	//
+
+		itemDef {
+			name subbuttonshadow
+			rect 240 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 241 308 238 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 479 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+
+
+		// TITLE //
+
+		itemDef {
+			name tab
+			group page1
+			text "CREDITS"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 10 13 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+
+
+		// NEXT & PREVIOUS BUTTONS //
+
+		itemDef {
+			name page1b
+			text "DISTRIBUTION RIGHTS"
+			type 1
+			textscale .25
+			group grpControlbutton
+			style WINDOW_STYLE_FILLED
+			rect 300 262 220 25
+			textalign 1
+			textalignx 110
+			textaligny 17
+			forecolor 1 1 1 .65
+			backcolor 0 0 0 .3
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; hide page1b ; show page2b ; hide page1 ; show page2; setfocus page2b}
+			mouseEnter { setcolor backcolor 0 0 .55 .5} 
+			mouseExit { setcolor backcolor 0 0 0 .3 } 
+		}
+		itemDef {
+			name page2b
+			text "CREDITS"
+			type 1
+			textscale .25
+			group grpControlbutton
+			style WINDOW_STYLE_FILLED
+			rect 300 262 220 25
+			textalign 1
+			textalignx 110
+			textaligny 17
+			forecolor 1 1 1 .65
+			backcolor 0 0 0 .3
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; hide page2 ; show page1 ; hide page2b ; show page1b ; setfocus page1b}
+			mouseEnter { setcolor backcolor 0 0 .55 .5} 
+			mouseExit { setcolor backcolor 0 0 0 .3 } 
+		}
+
+
+		// CATEGORIES //
+
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 10 39 70 19
+			forecolor .07 .3 .7 .8
+			visible 1
+			decoration
+		}
+
+
+		// FROZEN SAND NAMES COLUMN //
+
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 44 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 57 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 70 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 83 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 96 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 109 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 122 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 135 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 148 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 161 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 174 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 187 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 200 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 213 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 226 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 239 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 252 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 0 265 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
+
+
+		// FROZEN SAND DESCRIPTIONS COLUMN //
+
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 44 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 57 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 70 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 83 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 96 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 109 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 122 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 135 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 148 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 161 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 174 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 187 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 200 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 213 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 226 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 239 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 252 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+		itemDef {
+			name demoname
+			group page1
+			text "FROZEN SAND"
+			type 0
+			style WINDOW_STYLE_FILLED
+			rect 115 265 200 13
+			textalign ITEM_ALIGN_LEFT
+			textalignx 10
+			textaligny 10
+			textscale .2 
+			forecolor 1 1 1 .45
+			visible 1
+			decoration
+		}
+
+
+	}
+}

@@ -17,12 +17,15 @@
 	loadMenu { "ui/quitcredit.menu" }
 	loadMenu { "ui/createfavorite.menu" }
 	loadMenu { "ui/psetup.menu" }
-    loadMenu { "ui/psetup_readme.menu" }
+    	loadMenu { "ui/psetup_readme.menu" }
 	loadMenu { "ui/demo.menu" }
 	loadMenu { "ui/specialcredit.menu" }
 	loadMenu { "ui/betacredit.menu" }
 	loadMenu { "ui/betacredit_back.menu" }
 	loadMenu { "ui/quitcredit_back.menu" }
-    loadMenu { "ui/authkey.menu" }
-    loadMenu { "ui/disconnect.menu" }
+  	loadMenu { "ui/authkey.menu" }
+   	loadMenu { "ui/extra.menu" }
+   	loadMenu { "ui/stats.menu" }
+   	loadMenu { "ui/create.menu" }
+   	loadMenu { "ui/credits.menu" }
 }
