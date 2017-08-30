@@ -1,390 +1,1454 @@
 #include "ui/menudef.h"
 {
 
-	/*	INGAME_SELECT_TEAM
-	Revised by woekele, for 4.0. Slight adjustments, nothing big.
-	*/
-
-	assetGlobalDef {
-		font "fonts/fontImage_40" 40
-		smallFont "fonts/fontImage_30" 30
-		bigFont "fonts/fontImage_50" 50
-
-		cursor "ui/assets/3_cursor3"			// cursor
-		itemFocusSound "sound/misc/menu2.wav"		// sound for item getting focus (via keyboard or mouse )
-
-		fadeClamp 1.0					// sets the fadeup alpha
-		fadeCycle 1					// how often fade happens in milliseconds
-		fadeAmount 0.1					// amount to adjust alpha per cycle
-
-		shadowColor 0.1 0.1 0.1 0.25			// shadow color
-	}
+assetGlobalDef {
+	font "fonts/fontImage_40" 40
+	smallFont "fonts/fontImage_30" 30
+	bigFont "fonts/fontImage_50" 50
+	cursor "ui/assets/3_cursor3"			// cursor	
+	itemFocusSound "sound/misc/menu2.wav"		// sound for item getting focus (via keyboard or mouse )
+	fadeClamp 1.0					// sets the fadeup alpha
+	fadeCycle 1					// how often fade happens in milliseconds
+	fadeAmount 0.1					// amount to adjust alpha per cycle
+	shadowColor 0.1 0.1 0.1 0.25			// shadow color
+  	}
+							   
 
 
+\\ INGAME MENU \\
 
-	\\ INGAME MENU \\
+  menuDef {
+    	name "ingame"
+    	visible 0
+    	fullScreen 0
+    	rect 0 0 640 480
+	focusColor 1 1 1 1
+	disableColor .5 .5 .5 1
+	onOpen { uiScript stopRefresh ; uiScript update "ui_GetName"; uiScript UpdateFilter; uiScript loadArenas; hide maplist; hide kicklist; hide kicklistadmin; hide maplistadmin; hide mapbvote; hide mapbadmin; hide nextmapbvote; hide nextmapbadmin; hide kickbvote; hide kickbadmin; hide admingrp; show votegrp; show servipb; hide servip}
 
-	menuDef {
-		name "ingame"
-		visible 0
-		fullScreen 0
-		//outOfBoundsClick			// this closes the window if it gets a click out of the rectangle
-		rect 0 0 640 480
-		focusColor 1 1 1 1
-		disableColor .5 .5 .5 1
+	
+	
+	
+	
+	
+	
+		//	ANIMATION	//
 
-		itemdef {
-			name background
-			rect -2 -2 644 42
-			style WINDOW_STYLE_SHADER
-			background "ui/assets/ingame_bg_tr.tga"
-			border 1
-			bordercolor .5 .5 .5 1
+		itemDef {
+			name darken
+			style WINDOW_STYLE_FILLED
+			rect 0 0 640 480
+			backcolor 0 0 0 .06
 			visible 1
 			decoration
 		}
+	
+	
+		//	MENU DECORATIVE	//
 
+		itemDef {
+			name bigback
+			type 0
+			rect 20 97 600 102
+			style 1
+			backcolor 0 0 0 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			group admingrp
+			type 0
+			rect 20 199 600 13
+			style 1
+			backcolor 0 0 0 .7
+			visible 0
+			decoration
+		}
+		itemDef {
+			name subbar
+			type 0
+			rect 20 77 600 19
+			style 1
+			backcolor 0 0 0 .8
+			visible 1
+			decoration
+		}
+		itemDef {
+			name rightbumper
+			style 1
+			rect 535 14 115 49
+			backcolor 0 0 0 .8
+			visible 1
+			decoration
+		}
+		itemDef {
+			name leftbumper
+			style 1
+			rect 0 14 20 49
+			backcolor 0 0 0 .8
+			forecolor 1 1 1 1
+			visible 1
+			decoration
+		}
 		itemDef {
 			name ut_logo_graphic
 			style WINDOW_STYLE_SHADER
-			background "ui/assets/utlogo.tga"
-			rect 519 4 118 30
+			background "ui/assets/fswm.png"
+			rect 549 27 60 26
 			visible 1
 			decoration
 		}
+		itemDef {
+			name mainbuttonshadow
+			rect 19 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 18 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .05
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 105 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 106 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .05
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mapbvote
+			style 1
+			rect 29 190 21 1
+			backcolor .07 .3 .7 .7
+			forecolor 1 1 1 1
+			visible 0
+			decoration
+		}
+		itemDef {
+			name nextmapbvote
+			style 1
+			rect 129 190 46 1
+			backcolor .07 .3 .7 .7
+			forecolor 1 1 1 1
+			visible 0
+			decoration
+		}
+		itemDef {
+			name kickbvote
+			style 1
+			rect 229 190 23 1
+			backcolor .07 .3 .7 .7
+			forecolor 1 1 1 1
+			visible 0
+			decoration
+		}
+		itemDef {
+			name mapbadmin
+			style 1
+			rect 29 203 21 1
+			backcolor .07 .3 .7 .7
+			forecolor 1 1 1 1
+			visible 0
+			decoration
+		}
+		itemDef {
+			name nextmapbadmin
+			style 1
+			rect 129 203 46 1
+			backcolor .07 .3 .7 .7
+			forecolor 1 1 1 1
+			visible 0
+			decoration
+		}
+		itemDef {
+			name kickbadmin
+			style 1
+			rect 229 203 44 1
+			backcolor .07 .3 .7 .7
+			forecolor 1 1 1 1
+			visible 0
+			decoration
+		}
+		
+		
+		
+		// TITLES //
+
+		itemDef {
+			group servinfo
+			text "SERVER INFO"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 410 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			text "MATCHMODE"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 403 70 19
+			forecolor .7 .7 .7 .7
+			visible 0
+			decoration
+		}
+		
 
 
-		//  BUTTONS	//
+		
+		//	MENU BAR BUTTONS	//
 
+		itemDef {
+			name homeoption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			type 1
+			style 1
+			rect 20 10 85 57
+			backcolor .03 .1 .3 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; setcvar ui_ingameMaster 0 ; close ingame ; open ingame ;}
+		}
+		itemDef {
+			name multiplayeroption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			type 1
+			style 1
+			rect 105 14 86 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; setcvar ui_ingameMaster 0 ; close ingame ; open ingame_joinserver ;}
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name setupoption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			type 1
+			style 1
+			rect 191 14 86 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; close ingame ; open ingame_setup; open control_menu}
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name demooption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			type 1
+			style 1
+			rect 277 14 86 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav"; close ingame ; open ingame_gear; }
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name extraoption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			type 1
+			style 1
+			rect 363 14 86 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; close ingame ; open ingame_stats}
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name quitoption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			group quitb
+			type 1
+			style 1
+			rect 449 14 86 49
+			backcolor 0 0 0 .8
+			visible 1 
+			action { play "sound/misc/kcaction.wav" ; hide quitb ; show confirmb; setfocus confirmb }
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name quitoption
+			cvartest "name"
+			hideCvar { "New_UrT_Player", "Unnamed Player" }
+			group confirmb
+			type 1
+			style 1
+			rect 449 14 86 49
+			backcolor .55 0 0 .7
+			visible 0
+			action { play "sound/misc/kcaction.wav" ; uiScript "quit" }
+			mouseEnter { setcolor backcolor .55 0 0 .6}
+			mouseExit { setcolor backcolor .55 0 0 .7 ; hide confirmb; show quitb }
+		}
 
+		
+		// MENU BUTTONS TEXT //
+		
+		itemDef {
+			name homeoption
+			cvartest "name"
+			text "MAIN"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 48 43 100 64
+			forecolor 1 1 1 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name multiplayeroption
+			cvartest "name"
+			text "SERVERS"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 123 43 86 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name setupoption
+			cvartest "name"
+			text "OPTIONS"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 210 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demooption
+			cvartest "name"
+			text "GEAR"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 304 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name startserveroption
+			cvartest "name"
+			text "STATS"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 389 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name quitoption
+			cvartest "name"
+			group quitb
+			text "QUIT"
+			textscale 0.23
+			style 1
+			rect 479 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name quitoption
+			cvartest "name"
+			group confirmb
+			text "CONFIRM?"
+			textscale 0.23
+			style 1
+			rect 464 43 100 64
+			forecolor 1 1 1 .8
+			visible 0
+			decoration
+		}
+		
+		
+		
+		// GAMETYPES INFO //
+		
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "0" }
+			group grpTabs
+			text "FREE FOR ALL"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name freeforall
+			autowrapped
+			text 	"You are against everybody and everybody is against you. At the end of the map, the winner is the person with the greatest number of points. If you are killed, you will respawn at a random location after a short delay."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "0" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "1" }
+			group grpTabs
+			text "LAST MAN STANDING"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name lms
+			autowrapped
+			text 	"You are against everybody and everybody is against you. The round ends when there is only one last man standing who is rewarded 5 points. If you are killed, you will not respawn until the next round"
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "1" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "3" }
+			group grpTabs
+			text "TEAM DEATHMATCH"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name lms
+			autowrapped
+			text 	"Your goal is to acquire kills for your team. At the end of the map, the winner is the team with the greatest number of points. If you are killed, you will respawn after a short delay."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "3" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "4" }
+			group grpTabs
+			text "TEAM SURVIVOR"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text 	"Your goal is to annihilate the opposing team. The round ends when all the members of one team are killed. The team left standing is awarded a point. If you are killed, you will not respawn until the next round."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "4" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "5" }
+			group grpTabs
+			text "FOLLOW THE LEADER"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text "You must help your leader touch the enemy flag. The round ends when a leader reaches the opposing flag, or when all members of one team are dead. If you are killed, you will not respawn until the next round."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "5" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "6" }
+			group grpTabs
+			text "CAPTURE AND HOLD"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text "Capture the flags around the map by walking on them. Every minute, your team scores a point for each flag of your color. Your goal is to have as many flags as possible at each scoring time."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "6" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "7" }
+			group grpTabs
+			text "CAPTURE THE FLAG"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text "Each team has a home base which holds a flag. The team's goal is to get the flag from the enemy base and bring it back to their base. You must prevent the enemy from doing the same. If you are killed, you will respawn after a short delay."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "7" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "8" }
+			group grpTabs
+			text "BOMB"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text "Delta team's goal is to blow up one of the targets or to kill all of the opposing team. Alpha team's goal is to keep Delta from planting the bomb, or to defuse it. Alpha can not pick up the bomb."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "8" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "9" }
+			group grpTabs
+			text "JUMP"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text "Some say humans were not designed to fly. Time to prove them wrong. Jump, bounce, slide, grab and reach the end of the level"
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "9" }
+			visible 1
+			decoration
+		}
+		itemDef {
+			name tab
+			cvarTest "g_gametype"
+			showCvar { "10" }
+			group grpTabs
+			text "FREEZE TAG"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 30 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef	{
+			name teamsurvivor
+			autowrapped
+			text "Your goal is to freeze the opposing team. The round ends when all the members of one team are frozen or killed. If you are killed, you will thaw out slowly, or be thawed out quicker by a team member."
+			style 1
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
+			rect 20 111 360 37
+			cvarTest "g_gametype"
+			showCvar { "10" }
+			visible 1
+			decoration
+		}
+		
+		
+		
+		// MAIN CONTENT //
+		
+		itemDef {
+			name maplist
+			text "MAPS"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 410 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			name maplistadmin
+			text "MAPS"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 410 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			name kicklist
+			text "PLAYERS"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 410 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			name kicklistadmin
+			text "PLAYERS"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 410 90 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			name maplist
+		    rect 403 97 234 85
+			type ITEM_TYPE_LISTBOX
+			style WINDOW_STYLE_FILLED
+			elementwidth 120
+			elementheight 13
+			textscale .2
+			elementtype LISTBOX_TEXT
+			feeder FEEDER_ALLMAPS
+			forecolor 1 1 1 .65
+			outlinecolor 1 1 1 .1
+			visible 0
+			columns 1 2 190 25
+			action { play "sound/misc/kcaction.wav" }
+		}
+		itemDef {
+			name maplistadmin
+		    rect 403 97 234 98
+			type ITEM_TYPE_LISTBOX
+			style WINDOW_STYLE_FILLED
+			elementwidth 120
+			elementheight 13
+			textscale .2
+			elementtype LISTBOX_TEXT
+			feeder FEEDER_ALLMAPS
+			forecolor 1 1 1 .65
+			outlinecolor 1 1 1 .1
+			visible 0
+			columns 1 2 190 25
+			action { play "sound/misc/kcaction.wav" }
+		}
+		itemDef {
+			name kicklist
+		    rect 403 97 234 85
+			type ITEM_TYPE_LISTBOX
+			style WINDOW_STYLE_FILLED
+			elementwidth 120
+			elementheight 13
+			textscale .2
+			elementtype LISTBOX_TEXT
+			feeder FEEDER_PLAYER_LIST
+			forecolor 1 1 1 .65
+			outlinecolor 1 1 1 .1
+			visible 0
+			columns 1 2 190 25
+			action { play "sound/misc/kcaction.wav" }
+		}
+		itemDef {
+			name kicklistadmin
+		    rect 403 97 234 64
+			type ITEM_TYPE_LISTBOX
+			style WINDOW_STYLE_FILLED
+			elementwidth 120
+			elementheight 13
+			textscale .2
+			elementtype LISTBOX_TEXT
+			feeder FEEDER_PLAYER_LIST
+			forecolor 1 1 1 .65
+			outlinecolor 1 1 1 .1
+			visible 0
+			columns 1 2 190 25
+			action { play "sound/misc/kcaction.wav" }
+		}
+		
+		itemDef {
+			group votegrp
+			rect 30 148 25 1
+			style WINDOW_STYLE_FILLED
+			backcolor .07 .3 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			group admingrp
+			text "VOTE"
+			type ITEM_TYPE_BUTTON
+			textalignx 10
+			textaligny 10
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 20 150 70 13
+			forecolor .07 .3 .7 .85
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; hide admingrp; show votegrp; hide kicklist; hide kickbadmin; hide kickbvote; hide nextmapbadmin; hide nextmapbvote; hide mapbadmin; hide kicklistadmin; hide maplist; hide maplistadmin; hide mapbvote; show servinfo; hide servip}
+		}
+		itemDef {
+			group votegrp
+			text "VOTE"
+			type 0
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 30 160 70 19
+			forecolor .07 .3 .7 .85
+			visible 1 
+			decoration
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 320 165 100 13
+			visible 1
+			text "VOTE YES"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor .2 .7 .2 .7
+			action { play "sound/misc/kcaction.wav" ; exec "vote yes" ; uiScript closeingame}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 320 178 100 13
+			visible 1
+			text "VOTE NO"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor .7 .2 .2 .7
+			action { play "sound/misc/kcaction.wav" ; exec "vote no" ; uiScript closeingame}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 20 165 100 13
+			visible 1
+			text "CYCLE MAP"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "cmd callvote cyclemap" ; uiScript closeingame}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 120 165 100 13
+			visible 1
+			text "RESTART"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "cmd callvote restart" ; uiScript closeingame}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 220 165 100 13
+			visible 1
+			text "SHUFFLE"
+			cvarTest "g_gametype"
+			disableCvar { "0" ; "1" ; "9"}
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "cmd callvote shufflesteams" ; uiScript closeingame}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 20 178 100 13
+			visible 1
+			text "MAP"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; hide kicklist; hide kickbvote; hide nextmapbvote; show maplist; hide maplistadmin; show mapbvote; hide servinfo; hide servip}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 120 178 100 13
+			visible 1
+			text "NEXTMAP"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; hide kicklist; hide kickbvote; hide mapbvote; show maplist; hide maplistadmin; show nextmapbvote; hide servinfo; hide servip}
+		}
+		itemDef {
+			group votegrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 220 178 100 13
+			visible 1
+			text "KICK"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; hide maplist; hide maplistadmin; hide mapbvote; hide nextmapbvote; show kicklist; show kickbvote; hide servinfo; hide servip}
+		}
+		itemDef {
+			name mapbvote
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 182 214 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "VOTE MAP"
+			textstyle 0
+			textalignx 81
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript voteMap ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name nextmapbvote
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 182 214 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "VOTE NEXTMAP"
+			textstyle 0
+			textalignx 69
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript voteNextMap ; uiScript closeingame}
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbvote
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 182 214 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "VOTE KICK"
+			textstyle 0
+			textalignx 80
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript voteKick ; uiScript closeingame}
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		
+		
+		itemDef {
+			group admingrp
+			rect 81 148 32 1
+			style WINDOW_STYLE_FILLED
+			backcolor .07 .3 .7 .7
+			visible 1
+			decoration
+		}
+		itemDef {
+			group votegrp
+			text "ADMIN"
+			type ITEM_TYPE_BUTTON
+			textalignx 10
+			textaligny 10
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 70 150	70 13
+			forecolor .07 .3 .7 .85
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; hide votegrp; show admingrp; hide kicklist; hide kickbadmin; hide kickbvote; hide nextmapbadmin; hide nextmapbvote; hide mapbadmin; hide kicklistadmin; hide maplist; hide mapbvote; show servinfo; hide servip }
+		}
+		itemDef {
+			group admingrp
+			text "ADMIN"
+			type 0
+			textalignx 10
+			textaligny 10
+			textscale .22
+			style WINDOW_STYLE_FILLED
+			rect 70 150	70 13
+			forecolor .07 .3 .7 .85
+			visible 1
+			decoration
+		}
+		itemDef {
+			group admingrp
+			rect 170 145 100 19
+			style WINDOW_STYLE_FILLED
+			textscale .18
+			textalign ITEM_ALIGN_LEFT
+			textalignx 4
+			textaligny 13
+			maxchars 14
+			type ITEM_TYPE_EDITFIELD
+			cvar "rconpassword"
+			text "rcon:"
+			forecolor 1 1 1 .6
+			visible 1
+		}
+		itemDef {
+			group admingrp
+			rect 170 148 100 13
+			style WINDOW_STYLE_FILLED
+			backcolor 0	0 0 .3
+			visible 1
+			decoration
+		}
+		itemDef {
+			group admingrp
+			rect 270 148 12 13
+			style WINDOW_STYLE_FILLED
+			textscale .18
+			text "x"
+			backcolor 0 0 0 .2
+			textalign ITEM_ALIGN_LEFT
+			textalignx 4
+			textaligny 9
+			type ITEM_TYPE_BUTTON
+			forecolor 1 1 1 .6
+			visible 1
+			action { play "sound/misc/kcaction.wav"; clearcvar rconpassword }
+			mouseEnter { setcolor backcolor 0 0 0 .3 }
+			mouseExit { setcolor backcolor 0 0 0 .2 }
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 320 165 100 13
+			visible 1
+			text "VETO"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor .7 .2 .2 .75
+			action { play "sound/misc/kcaction.wav" ; exec "rcon veto" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 20 165 100 13
+			visible 1
+			text "CYCLE MAP"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "rcon cyclemap" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 120 165 100 13
+			visible 1
+			text "RESTART"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "rcon map_restart" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 220 165 100 13
+			visible 1
+			text "SHUFFLE"
+			cvarTest "g_gametype"
+			disableCvar { "0" ; "1" ; "9"}
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "rcon shufflesteams" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 20 178 100 13
+			visible 1
+			text "PAUSE"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "rcon pause" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 120 178 100 13
+			visible 1
+			text "RELOAD"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "rcon reload" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 220 178 100 13
+			visible 1
+			text "BALANCE"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; exec "rcon balanceteams" ; uiScript closeingame}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 20 191 100 13
+			visible 1
+			text "MAP"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav"; hide kickbadmin; hide nextmapbadmin; hide kicklistadmin; show maplistadmin; show mapbadmin; hide servinfo; hide servip}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 120 191 100 13
+			visible 1
+			text "NEXTMAP"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav"; hide kickbadmin; hide mapbadmin; hide kicklistadmin; show maplistadmin; show nextmapbadmin; hide servinfo; hide servip}
+		}
+		itemDef {
+			group admingrp
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 220 191 100 13
+			visible 1
+			text "PLAYERS"
+			textstyle 0
+			textalignx 10
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; hide maplist; hide maplistadmin; hide mapbadmin; hide nextmapbadmin; show kicklistadmin; show kickbadmin; hide servinfo; hide servip}
+		}
+		itemDef {
+			name mapbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 195 214 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "SET MAP"
+			textstyle 0
+			textalignx 84
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript voteMap ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name nextmapbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 195 214 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "SET NEXTMAP"
+			textstyle 0
+			textalignx 66
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript voteNextMap; uiScript closeingame}
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 161 107 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "SLAP"
+			textstyle 0
+			textalignx 40
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; ; uiScript Rcon_Slap ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 513 161 107 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "MUTE"
+			textstyle 0
+			textalignx 38
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript Rcon_Mute ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 178 107 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "NUKE"
+			textstyle 0
+			textalignx 39
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript Rcon_Nuke ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 513 178 107 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "SMITE"
+			textstyle 0
+			textalignx 37
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript Rcon_Smite ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 406 195 107 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "KICK"
+			textstyle 0
+			textalignx 41
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript Rcon_Kick ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		itemDef {
+			name kickbadmin
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 513 195 107 17
+			backcolor 0 0 0 .3
+			visible 0
+			text "BAN"
+			textstyle 0
+			textalignx 42
+			textaligny 13
+			textscale .21
+			forecolor 1 1 1 .7
+			action { play "sound/misc/kcaction.wav" ; uiScript Rcon_Ban2 ; uiScript closeingame }
+			mouseEnter { setcolor backcolor .03 .1 .3 .6}
+			mouseExit { setcolor backcolor 0 0 0 .3}
+		}
+		
+		
+		itemDef {
+			group servinfo
+			rect 400 111 200 13
+			type ITEM_TYPE_EDITFIELD
+			text "Server:"
+			cvar "sv_hostname"
+			maxchars 26
+			textscale .20
+			textalignx 10
+			textaligny 1
+			style WINDOW_STYLE_FILLED
+			forecolor 1 1 1 .65
+			visible 1
+			decoration
+		}
 		itemdef {
-			name about
-			rect 16 12 50 20
+			name servipb
+			group servinfo
+			rect 570 81 14 12
 			type 1
 			style WINDOW_STYLE_FILLED
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
+			backcolor 0 0 0 .3
 			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_about }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
+			action { play "sound/misc/kcaction.wav" ; show servip; hide servipb }
+			mouseEnter { setcolor backcolor 0 0 0 .1 }
+			mouseExit { setcolor backcolor 0 0 0 .3 }
 		}
-
-
-
-		itemDef {
-			name player
-			type 1
-			style WINDOW_STYLE_FILLED
-			rect 72 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_player }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-		itemDef {
-			name stats
-			type 1
-			style WINDOW_STYLE_FILLED
-			rect 128 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_stats }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-
-		itemDef {
-			name controls
-			type 1
-			style WINDOW_STYLE_FILLED
-			rect 184 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_controls }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-		itemDef {
-			name options
-			type 1
-			style WINDOW_STYLE_FILLED
-			rect 240 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_options }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-		itemDef {
-			name system
-			type 1
-			style WINDOW_STYLE_FILLED
-			rect 296 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_system }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-		itemDef {
-			name callvote
-			type 1
-			style WINDOW_STYLE_FILLED
-			cvarTest "ui_singleplayeractive"
-			disableCvar { "1" }
-			rect 352 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_callvote }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-		itemDef {
-			name rcon
-			type 1
-			style WINDOW_STYLE_FILLED
-			cvarTest "ui_singleplayeractive"
-			disableCvar { "1" }
-			rect 408 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_rcon }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-
-		itemDef {
-			name leave
-			type 1
-			style WINDOW_STYLE_FILLED
-			rect 464 12 50 20
-			forecolor 1 1 1 1
-			backcolor 0 0 0 .8
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			action { play "sound/misc/kcaction.wav" ; open ingame_leave }
-			mouseEnter { setcolor backcolor 0 0 .55 1}
-			mouseExit { setcolor backcolor 0 0 0 .8 }
-		}
-
-		//  TEXT	//
-
-
 		itemdef {
-			name about
-			text "about"
-			rect 16 12 50 20
+			name servipb
+			group servinfo
+			rect 570 81 14 12
 			type 0
+			forecolor 1 1 1 .2
+			text "IP"
+			textscale .17
+			textalign 0
+			textalignx 4
+			textaligny 9
 			style WINDOW_STYLE_FILLED
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
 			visible 1
 			decoration
 		}
-
-
-
 		itemDef {
-			name player
-			text "player"
-			style WINDOW_STYLE_FILLED
-			rect 72 12 50 20
-			type 0
+			name servip
+			rect 490 81 94 12
+			type ITEM_TYPE_EDITFIELD
+			text ""
+			cvar "cl_lastServerAddress"
+			backcolor 0 0 0 .3
+			textscale .17
 			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
+			textalignx 4
+			textaligny 9
+			style WINDOW_STYLE_FILLED
+			forecolor 1 1 1 .2
+			visible 0
 			decoration
 		}
-
-
-
 		itemDef {
-			name stats
-			text "stats"
+			group servinfo
+			rect 400 123 200 13
+			type ITEM_TYPE_EDITFIELD
+			text "Current map:"
+			cvar "mapname"
+			maxchars 26
+			textscale .20
+			textalignx 10
+			textaligny 1
 			style WINDOW_STYLE_FILLED
-			rect 128 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
+			forecolor 1 1 1 .65
 			visible 1
 			decoration
 		}
-
-
 		itemDef {
-			name controls
-			text "controls"
+			group servinfo
+			rect 400 135 200 13
+			type ITEM_TYPE_EDITFIELD
+			text "Next map:"
+			cvar "g_nextmap"
+			maxchars 26
+			textscale .20
+			textalignx 10
+			textaligny 1
+			forecolor 1 1 1 .65
 			style WINDOW_STYLE_FILLED
-			rect 184 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
 			visible 1
 			decoration
 		}
+		
+		
 
-
-		itemDef {
-			name options
-			text "options"
-			style WINDOW_STYLE_FILLED
-			rect 240 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			decoration
-		}
-
-
-		itemDef {
-			name system
-			text "system"
-			style WINDOW_STYLE_FILLED
-			rect 296 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			decoration
-		}
-
-		itemDef {
-			name callvote
-			text "votes"
-			style WINDOW_STYLE_FILLED
-			cvarTest "ui_singleplayeractive"
-			disableCvar { "1" }
-			rect 352 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			decoration
-		}
-
-
-		itemDef {
-			name vote
-			text "rcon"
-			style WINDOW_STYLE_FILLED
-			cvarTest "ui_singleplayeractive"
-			disableCvar { "1" }
-			rect 408 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			decoration
-		}
-
-
-		itemDef {
-			name leave
-			text "exit"
-			style WINDOW_STYLE_FILLED
-			rect 464 12 50 20
-			type 0
-			textalign 2
-			textalignx 46
-			textaligny 16
-			textscale .22
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0
-			border 1
-			bordercolor .5 .5 .5 1
-			visible 1
-			decoration
-		}
-
-
-	}
+ 
+}
 
 }

@@ -1,0 +1,417 @@
+#include "ui/menudef.h"
+{
+
+	menuDef {
+		name "ingame_setup"
+		visible 1
+		fullscreen 0
+		rect 0 0 640 480
+		focusColor 1 1 1 .4
+		style 1
+		onOpen { hide confirmb; show quitb}
+		onEsc { close setup_menu ; open main }
+
+//	ANIMATION	//
+
+		itemDef {
+			name darken
+			style WINDOW_STYLE_FILLED
+			rect 0 0 640 480
+			backcolor 0 0 0 .06
+			visible 1
+			decoration
+		}
+
+		
+		//	COPYRIGHT TEXT	//
+
+		itemDef {
+			name copyright
+			text "Urban Terror (tm) (c) 2000-2012 Frozen Sand/0870760 B.C. Ltd"
+			style 0
+			textscale .165
+			rect 610 434 640 40
+			textalign 2 
+			forecolor 1 1 1 .3
+			visible 1
+			decoration
+		}
+		itemDef {
+			name copyright
+			text "Quake 3 Arena (c) 2000-2012 id Software, inc. all rights reserved"
+			style 0
+			textscale .165
+			rect 610 446 640 40
+			textalign 2	
+			forecolor 1 1 1 .3
+			visible 1
+			decoration
+		}
+		itemDef {
+			name version
+			text "Urban Terror"
+			style 0
+			textscale .19
+			rect 605 461 640 40
+			textalign 2
+			textalignx -35
+			visible 1
+			forecolor 1 1 1 .4
+			decoration
+		}
+		itemDef {
+			name version
+			rect 610 461 640 40
+			type ITEM_TYPE_TEXT
+			cvar "ui_modversion"
+			textalign 2
+			textscale .2
+			textalignx -32
+			forecolor .7 .8 .9 .4
+			style 0
+			visible 1
+			decoration
+		}
+		
+		
+		//	MENU DECORATIVE	//
+
+		itemDef {
+			name rightbumper
+			style 1
+			rect 535 14 115 49
+			backcolor 0 0 0 .8
+			visible 1
+			decoration
+		}
+		itemDef {
+			name leftbumper
+			style 1
+			rect 0 14 20 49
+			backcolor 0 0 0 .8
+			forecolor 1 1 1 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name ut_logo_graphic
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/fswm.png"
+			rect 549 27 60 26
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 190 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 189 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .05
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 277 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name mainbuttonshadow
+			rect 278 14 1 49
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .05
+			visible 1
+			decoration
+		}
+
+		
+		//	MENU BAR BUTTONS	//
+
+		itemDef {
+			name homeoption
+			type 1
+			style 1
+			rect 20 14 85 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; setcvar ui_ingameMaster 0 ; close ingame_setup; open ingame ;}
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name multiplayeroption
+			type 1
+			style 1
+			rect 105 14 86 49
+			backcolor 0 0 0 .68
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; setcvar ui_ingameMaster 0 ; close ingame_setup ; open ingame_joinserver}
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name setupoption
+			type 1
+			style 1
+			rect 191 10 86 57
+			backcolor .03 .1 .3 .6
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; close ingame_setup ; open ingame_setup ; open control_menu}
+		}
+		itemDef {
+			name demooption
+			type 1
+			style 1
+			rect 277 14 86 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav"; close ingame_setup ; open demo; }
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8}
+		}
+		itemDef {
+			name extraoption
+			type 1
+			style 1
+			rect 363 14 86 49
+			backcolor 0 0 0 .8
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; close setup_menu ; open extra_menu; open stats_menu }
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name quitoption
+			group quitb
+			type 1
+			style 1
+			rect 449 14 86 49
+			backcolor 0 0 0 .8
+			visible 1 
+			action { play "sound/misc/kcaction.wav" ; hide quitb ; show confirmb; setfocus confirmb }
+			mouseEnter { setcolor backcolor 0 0 0 .7 }
+			mouseExit { setcolor backcolor 0 0 0 .8 }
+		}
+		itemDef {
+			name quitoption
+			group confirmb
+			type 1
+			style 1
+			rect 449 14 86 49
+			backcolor .55 0 0 .7
+			visible 0
+			action { play "sound/misc/kcaction.wav" ; uiScript "quit" }
+			mouseEnter { setcolor backcolor .55 0 0 .6}
+			mouseExit { setcolor backcolor .55 0 0 .7 ; hide confirmb; show quitb; open control_menu }
+		}
+
+		
+		// MENU BUTTONS TEXT //
+		
+		itemDef {
+			name homeoption
+			cvartest "name"
+			text "MAIN"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 48 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name multiplayeroption
+			cvartest "name"
+			text "SERVERS"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 123 43 86 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name setupoption
+			cvartest "name"
+			text "OPTIONS"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 210 43 100 64
+			forecolor 1 1 1 1
+			visible 1 
+			decoration
+		}
+		itemDef {
+			name demooption
+			cvartest "name"
+			text "GEAR"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 304 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name startserveroption
+			cvartest "name"
+			text "STATS"
+			textscale 0.23
+			textstyle 0
+			style 1
+			rect 389 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name quitoption
+			cvartest "name"
+			group quitb
+			text "QUIT"
+			textscale 0.23
+			style 1
+			rect 479 43 100 64
+			forecolor .07 .3 .7 1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name quitoption
+			cvartest "name"
+			group confirmb
+			text "CONFIRM?"
+			textscale 0.23
+			style 1
+			rect 464 43 100 64
+			forecolor 1 1 1 .7
+			visible 0
+			decoration
+		}
+		
+
+		// SUB BUTTONS	//
+
+		itemDef {
+			name controls
+			type 1
+			style 1
+			rect 20 385 120 24
+			backcolor .03 .1 .3 .6
+			text "CONTROLS"
+			textstyle 0
+			textalignx 32
+			textaligny 16
+			textscale .21
+			forecolor 1 1 1 .7
+			visible 1
+			mouseEnter { setcolor backcolor 0 0 0 .1}
+			mouseExit { setcolor backcolor .03 .1 .3 .6}
+			action { play "sound/misc/kcaction.wav" ; close psetup_menu ;  
+				close control_menu ;
+				close system_menu ;
+				close options_menu ; 
+				close default_menu ;   
+				open control_menu }
+		}
+		itemDef {
+			name player
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 140 385 120 24
+			backcolor .03 .1 .3 .6
+			text "PLAYER"
+			textstyle 0
+			textalignx 40
+			textaligny 16
+			textscale .21
+			forecolor 1 1 1 .7
+			visible 1
+			mouseEnter { setcolor backcolor 0 0 0 .1}
+			mouseExit { setcolor backcolor .03 .1 .3 .6 }
+			action { play "sound/misc/kcaction.wav" ; close psetup_menu ; 
+				close control_menu ; 
+				close system_menu ;
+				close options_menu ; 
+				close default_menu ;   
+				open psetup_menu }  
+		}
+		itemDef {
+			name system
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 260 385 120 24
+			backcolor .03 .1 .3 .6
+			text "SYSTEM"
+			textstyle 0
+			textalignx 40
+			textaligny 16
+			textscale .21
+			forecolor 1 1 1 .7
+			visible 1
+			mouseEnter { setcolor backcolor 0 0 0 .1}
+			mouseExit { setcolor backcolor .03 .1 .3 .6 }
+			action { play "sound/misc/kcaction.wav" ; close psetup_menu ; 
+				close control_menu ; 
+				close system_menu ;
+				close options_menu ; 
+				close default_menu ;   
+				open system_menu }  
+		}
+		itemDef {
+			name gameoptions
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 380 385 120 24
+			backcolor .03 .1 .3 .6
+			text "GAME"
+			textstyle 0
+			textalignx 44
+			textaligny 16
+			textscale .21
+			forecolor 1 1 1 .7
+			visible 1
+			mouseEnter { setcolor backcolor 0 0 0 .1}
+			mouseExit { setcolor backcolor .03 .1 .3 .6 }
+			action { play "sound/misc/kcaction.wav" ; close psetup_menu ; 
+				close control_menu ; 
+				close system_menu ;
+				close options_menu ; 
+				close default_menu ;   
+				open options_menu }  
+		}
+		itemDef {
+			name defaults
+			type ITEM_TYPE_BUTTON
+			style WINDOW_STYLE_FILLED
+			rect 500 385 120 24
+			backcolor 0 0 0 .3
+			text "RESET"
+			textstyle 0
+			textalignx 44
+			textaligny 16
+			textscale .21
+			forecolor 1 1 1 .7
+			visible 1
+			mouseEnter { setcolor backcolor 0 0 0 .1}
+			mouseExit { setcolor backcolor 0 0 0 .3 }
+			action { play "sound/misc/kcaction.wav" ; open default_menu } 
+		}
+
+		
+	}
+}

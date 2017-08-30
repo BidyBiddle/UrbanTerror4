@@ -1,0 +1,522 @@
+#include "ui/menudef.h"
+{
+
+	menuDef {
+		name "ingame_psetup_menu"
+		visible 0
+		fullscreen 0
+		rect 20 77 600 312
+		focusColor 1 1 1 1
+		style 1
+		onEsc   { close psetup_menu ; close setup_menu ; open main ; uiScript update "ui_SetName" }
+		onOpen  { uiScript update "ui_GetName" }
+		onClose { uiScript update "ui_SetName" }
+
+		
+
+		
+		//	MENU DECORATIVE	//
+
+		itemDef {
+			name subbuttonshadow
+			rect 120 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 121 308 118 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .1
+			visible 1
+			decoration
+		}
+		itemDef {
+			name subbuttonshadow
+			rect 239 308 1 24
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 .14
+			visible 1
+			decoration
+		}
+
+		
+		// TITLE //
+		
+		itemDef {
+			name demoname
+			group grpTabs
+			text "PLAYER"
+			type 0
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			rect 10 13 70 19
+			forecolor .7 .7 .7 .7
+			visible 1
+			decoration
+		}
+		
+		
+		// SKINS MODE //
+		
+		itemDef {
+			name skinfixedtext
+			rect 450 29 50 15
+			text "SKINS ARE"
+			textscale .2
+			forecolor 1 1 1 .65
+			textalign 0
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+		}
+		itemDef {
+			name fixed_mod 
+			rect 442 42 70 25
+			group "playersettinggroup"
+			type ITEM_TYPE_MULTI
+			text ""
+			cvar "cg_skinFixed"
+			cvarStrList { "RELATIVE", "0", "FIXED", "1" }
+			forecolor 1 1 1 .65
+			textalign 0
+			textalignx 10
+			textaligny 10
+			textscale .27
+			visible 1
+			action { play "sound/misc/kcaction.wav" }
+		}
+		
+		
+		// SKINS MODE README //
+		
+		itemdef {
+			name readmeb
+			rect 527 42 35 11
+			type 1
+			style WINDOW_STYLE_FILLED
+			forecolor 1 1 1 1
+			backcolor 0 0 0 .2
+			visible 1
+			action { play "sound/misc/kcaction.wav" ; open psetup_menu_readme }
+			mouseEnter { setcolor backcolor 0 0 0 .1 }
+			mouseExit { setcolor backcolor 0 0 0 .3 }
+		}
+		itemdef {
+			name readmebtext
+			rect 527 42 35 12
+			type 0
+			text "readme"
+			textscale .17
+			textalign 0
+			textalignx 4
+			textaligny 9
+			style WINDOW_STYLE_FILLED
+			forecolor 1 1 1 .2
+			backcolor 0 0 0 0
+			visible 1
+			decoration
+		}
+		
+
+		// NICKNAME & ARMBAND COLOR //
+		
+		itemDef {
+			name namefield
+			rect 10 29 200 13
+			group "playersettinggroup"
+			type ITEM_TYPE_EDITFIELD
+			text "NICKNAME > "
+			cvar "ui_Name"
+			maxchars 26
+			textalign 0
+			textalignx 0
+			textaligny 10
+			textscale .2
+			style WINDOW_STYLE_FILLED
+			forecolor 1 1 1 .65
+			visible 1
+		}
+		itemDef {
+			name rgbchooser
+			rect 10 42 150 13
+			group "playersettinggroup"
+			type ITEM_TYPE_MULTI
+			text "ARMBAND COLOR:"
+			cvar "cg_rgb"
+			cvarStrList { "^7White", "255 255 255", "^7Grey", "128 128 128", "^7Black", "0 0 0", "^1Red", "255 0 0", "^2Green", "0 255 0", "^4Blue", "0 0 255", "^3Yellow", "255 255 0", "^5Cyan", "0 255 255", "^6Magenta", "255 0 255" }
+			textalign 0
+			textalignx 0
+			textaligny 10
+			textscale .2
+			forecolor 1 1 1 .65
+			visible 1
+			action { play "sound/misc/kcaction.wav" }
+		}
+		
+		
+		// CHARACTER SELECT //
+		
+		itemDef {
+			name choosetext
+			rect 200 29 50 15
+			text "CHOOSE A CHARACTER:"
+			textscale .2
+			forecolor 1 1 1 .65
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+		}
+		itemDef {
+			name female1
+			rect 200 42 40 20
+			text "MISU"
+			cvartest "racered"
+			hidecvar { "0" }
+			textscale .27
+			forecolor 1 1 1 .65
+			textalignx 10
+			textaligny 10
+			style 0
+			type 1
+			action { exec "racered 0" ; exec "raceblue 0" }
+			visible 1
+		}
+		itemDef {
+			name female1selected
+			rect 200 42 40 20
+			text "MISU"
+			cvartest "racered"
+			showcvar { "0" }
+			textscale .27
+			forecolor .07 .3 .7 .8
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name female2
+			rect 244 42 50 20
+			text "SARAH"
+			cvartest "racered"
+			hidecvar { "1" }
+			textscale .27
+			forecolor 1 1 1 .65
+			textalignx 10
+			textaligny 10
+			style 0
+			type 1
+			action { exec "racered 1" ; exec "raceblue 1" }
+			visible 1
+		}
+		itemDef {
+			name female2selected
+			rect 244 42 50 20
+			text "SARAH"
+			cvartest "racered"
+			showcvar { "1" }
+			textscale .27
+			forecolor .07 .3 .7 .8
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name male1
+			rect 298 42 50 20
+			text "TAKESHI"
+			cvartest "racered"
+			hidecvar { "2" }
+			textscale .27
+			forecolor 1 1 1 .65
+			textalignx 10
+			textaligny 10
+			style 0
+			type 1
+			action { exec "racered 2" ; exec "raceblue 2" }
+			visible 1
+		}
+		itemDef {
+			name male1selected
+			rect 298 42 50 20
+			text "TAKESHI"
+			cvartest "racered"
+			showcvar { "2" }
+			textscale .27
+			forecolor .07 .3 .7 .8
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name male2
+			rect 363 42 50 20
+			text "TOM"
+			cvartest "racered"
+			hidecvar { "3" }
+			textscale .27
+			forecolor 1 1 1 .65
+			textalignx 10
+			textaligny 10
+			style 0
+			type 1
+			action { exec "racered 3" ; exec "raceblue 3" }
+			visible 1
+		}
+		itemDef {
+			name male2selected
+			rect 363 42 50 20
+			text "TOM"
+			cvartest "racered"
+			showcvar { "3" }
+			textscale .27
+			forecolor .07 .3 .7 .8
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		
+
+		// SNAPSHOT PREVIEW THINGY //
+
+		itemDef {
+			name back1
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/psetup1.jpg"
+			rect 0 140 580 80
+			visible 1
+			decoration
+		}
+		itemDef {
+			name back2
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/psetup2.jpg"
+			rect 580 140 10 80
+			visible 1
+			decoration
+		}
+		itemDef {
+			name back3
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/psetup3.jpg"
+			rect 590 140 10 80
+			visible 1
+			decoration
+		}
+		itemDef {
+			name bleepblep
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/arrowright.png"
+			rect 10 150 20 30
+			type 1
+			visible 1
+			action { play "sound/misc/kcaction.wav"; transition back1 0 140 580 80 0 140 10 80 5 5 ; transition back2 580 140 10 80 10 140 580 80 5 5 ; hide bleepblep ; show bleepblep2 ; show bleepblepl1; setfocus bleepblep2}
+		}
+		itemDef {
+			name bleepblep2
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/arrowright.png"
+			rect 10 150 20 30
+			type 1
+			visible 0
+			action { play "sound/misc/kcaction.wav"; transition back2 10 140 580 80 10 140 10 80 5 5 ; transition back3 590 140 10 80 20 140 580 80 5 5 ; hide bleepblep2 ; hide bleepblepl1 ; show bleepblepl2 ; setfocus bleepblepl1}
+		}
+		itemDef {
+			name bleepblepl1
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/arrowleft.png"
+			rect 10 180 20 30
+			type 1
+			visible 0
+			action { play "sound/misc/kcaction.wav"; transition back1 0 140 10 80 0 140 580 80 5 5 ; transition back2 10 140 580 80 580 140 10 80 5 5 ; hide bleepblepl1 ; hide bleepblep2; show bleepblep ; setfocus bleepblep}
+		}
+		itemDef {
+			name bleepblepl2
+			style WINDOW_STYLE_SHADER
+			background "ui/assets/arrowleft.png"
+			rect 10 180 20 30
+			type 1
+			visible 0
+			action { play "sound/misc/kcaction.wav";  transition back2 10 140 10 80 10 140 580 80 5 5 ; transition back3 20 140 580 80 590 140 10 80 5 5 ; hide bleepblepl2 ; show bleepblep2 ; show bleepblepl1 ; setfocus bleepblepl1}
+		}
+		
+		
+		// SKIN CHOOSING //   
+
+		itemDef {
+			name allyskin
+			rect 123 176 150 60
+			type ITEM_TYPE_MULTI
+			text ""
+			cvar "cg_skinAlly" 
+			cvarStrList { "RED DRAGONS", "2", "GRIFFINS", "1", "SWAT", "3", "PURPLE HAZE", "4", "FUGITIVES", "5", "OILERS", "6", "ICE DRAGONS", "7", "BLACK ICE", "8", "DESERT", "9", "COWBOY", "10", "CAVALRY", "11", "DROOGS", "12", "DR.PINK", "13", "DR.BLUE", "14" }
+			textalign ITEM_ALIGN_RIGHT
+			textstyle 3
+			textalignx 10
+			textaligny 30
+			textscale 0.43
+			forecolor 1 1 1 .7
+			visible 1
+			action { play "sound/misc/kcaction.wav" }
+		}
+		itemDef {
+			name allyfixed
+			rect 130 160 200 60
+			text "YOUR"
+			textalign 0
+			textstyle 3
+			cvartest "cg_skinFixed"
+			showcvar { "0" }
+			textscale .28
+			forecolor 1 1 1 .7
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name allyrelative
+			rect 130 160 200 60
+			text "ALPHA"
+			textalign 0
+			textstyle 3
+			cvartest "cg_skinFixed"
+			showcvar { "1" }
+			textscale .28
+			forecolor 1 1 1 .7
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name teamfixed
+			rect 130 173 200 60
+			text "TEAM'S SKIN"
+			textalign 0
+			textstyle 3
+			textscale .28
+			forecolor 1 1 1 .7
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name enemyskin
+			rect 373 176 150 60
+			type ITEM_TYPE_MULTI
+			text ""
+			cvar "cg_skinEnemy"
+			cvarStrList { "DEFAULT", "0", "GRIFFINS", "1", "RED DRAGONS", "2", "SWAT", "3", "PURPLE HAZE", "4", "FUGITIVES", "5", "OILERS", "6", "ICE DRAGONS", "7", "BLACK ICE", "8", "DESERT", "9", "COWBOY", "10", "CAVALRY", "11", "DROOGS", "12", "DR.PINK", "13", "DR.BLUE", "14" }
+			textalign 0
+			textstyle 3
+			textalignx 10
+			textaligny 30
+			textscale 0.4
+			forecolor 1 1 1 .7
+			visible 1
+			action { play "sound/misc/kcaction.wav" }
+		}
+		itemDef {
+			name allyfixed
+			rect 380 160 200 60
+			text "THE ENEMY"
+			textalign 0
+			textstyle 3
+			cvartest "cg_skinFixed"
+			showcvar { "0" }
+			textscale .28
+			forecolor 1 1 1 .7
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name allyrelative
+			rect 380 160 200 60
+			text "DELTA"
+			textalign 0
+			textstyle 3
+			cvartest "cg_skinFixed"
+			showcvar { "1" }
+			textscale .28
+			forecolor 1 1 1 .7
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name teamfixed
+			rect 380 173 200 60
+			text "TEAM'S SKIN"
+			textalign 0
+			textstyle 3
+			textscale .28
+			forecolor 1 1 1 .7
+			textalignx 10
+			textaligny 10
+			style 0
+			type 0
+			visible 1
+			decoration
+		}
+		
+		
+		// PLAYER MODELS //
+		
+		itemDef {
+			name playermodel
+			rect 40 100 120 220
+			type ITEM_TYPE_OWNERDRAW
+			style WINDOW_STYLE_EMPTY
+			ownerdraw UI_PLAYERMODEL
+			ownerdrawparam 0
+			visible 1
+			decoration
+		}
+		itemDef {
+			name playermodel
+			rect 290 100 120 220
+			type ITEM_TYPE_OWNERDRAW
+			style WINDOW_STYLE_EMPTY
+			ownerdraw UI_PLAYERMODEL
+			ownerdrawparam 0
+			visible 1
+			decoration
+		}	
+		
+		
+		
+	}
+}
