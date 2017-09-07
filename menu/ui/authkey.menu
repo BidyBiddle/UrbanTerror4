@@ -85,7 +85,7 @@
       rect 320 240 580 25
       style 1
       text
-      "Some servers won't let you connect if you do not have an account."
+      "Some servers will not let you connect without an account."
       forecolor 1 1 1 .7
       textscale .17
       textalign 1
